@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D3D3D3"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#3C50BC"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="ex.no.1"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#0028FF"
+        android:textSize="50dp"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"/>
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="284dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="60dp"
+        android:background="#9F9F9F"
+        android:text="CHANGE FONT SIZE"
+        android:textAlignment="center"
+        android:layout_marginLeft="60dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="30dp" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="283dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="70dp"
+        android:background="#9F9F9F"
+        android:text="CHANGE COLOR"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_marginLeft="60dp"
+        android:textSize="30dp"/>
+
+</LinearLayout>

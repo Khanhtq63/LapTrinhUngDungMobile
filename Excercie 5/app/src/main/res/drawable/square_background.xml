@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#B900D8" /> <!-- Màu nền -->
+        <corners android:radius="0dp" /> <!-- Đặt bán kính góc thành 0dp để có góc vuông -->
+    </shape>
+</selector>
