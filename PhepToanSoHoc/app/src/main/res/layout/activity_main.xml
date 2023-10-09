@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="#3F51B5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FF6331"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số học đơn giản"
+            android:textSize="28dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:text="A="
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:background="@color/white"
+            android:paddingLeft="30dp"
+            android:gravity="center"
+            android:layout_marginRight="5dp">
+        </TextView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:id="@+id/edtA">
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:text="B="
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:background="@color/white"
+            android:paddingLeft="30dp"
+            android:gravity="center"
+            android:layout_marginRight="5dp">
+        </TextView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:id="@+id/edtB">
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="0.25"
+            android:backgroundTint="#4CAF50"
+            android:text="+"
+            android:textSize="30dp"
+            app:cornerRadius="0dp"
+            android:id="@+id/btnAdd"
+            android:onClick="XuLy_Cong">
+
+        </Button>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CAF50"
+            android:text="-"
+            android:textSize="30dp"
+            android:layout_weight="0.25"
+            android:layout_margin="5dp"
+            app:cornerRadius="0dp"
+            android:id="@+id/btnSub"
+            android:onClick="XuLy_Tru">
+        </Button>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CAF50"
+            android:text="*"
+            android:textSize="30dp"
+            android:layout_weight="0.25"
+            android:layout_margin="5dp"
+            app:cornerRadius="0dp"
+            android:id="@+id/btnMul"
+            android:onClick="XuLy_Nhan">
+        </Button>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CAF50"
+            android:text="/"
+            android:textSize="30dp"
+            android:layout_weight="0.25"
+            android:layout_margin="5dp"
+            app:cornerRadius="0dp"
+            android:id="@+id/btnDiv"
+            android:onClick="XuLy_Chia">
+        </Button>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="145dp"
+            android:layout_height="50dp"
+            android:text="Kết quả"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="10dp">
+        </TextView>
+        <TextView
+            android:layout_width="360dp"
+            android:layout_height="100dp"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/tvResult">
+        </TextView>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

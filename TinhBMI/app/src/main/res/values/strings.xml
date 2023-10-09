@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TinhBMI</string>
+    <string name="bmi_result">Your BMI: %.2f</string>
+    <string name="bmi_status">Status: %s</string>
+    <string name="enter_height_weight">Please enter height and weight.</string>
+</resources>
+
