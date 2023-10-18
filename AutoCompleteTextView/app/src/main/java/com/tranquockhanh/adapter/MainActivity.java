@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     ArrayList<String> dsQuocGia;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_dropdown_item_1line,
         dsQuocGia
         );
-
         autoQUOCGIA.setAdapter(adapterQG);
     }
 
-    public void findControl(){
+    public void findControl()
+    {
         autoQUOCGIA = findViewById(R.id.autoCompletetextQUOCGIA);
     }
     AutoCompleteTextView autoQUOCGIA;
