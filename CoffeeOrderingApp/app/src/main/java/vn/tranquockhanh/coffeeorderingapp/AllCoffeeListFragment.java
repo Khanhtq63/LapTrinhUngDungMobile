@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,12 +31,13 @@ import vn.tranquockhanh.coffeeorderingapp.MVVM.CoffeeViewModel;
 import vn.tranquockhanh.coffeeorderingapp.Model.CoffeeModel;
 
 
-public class AllCoffeeListFragment extends Fragment {
+public class AllCoffeeListFragment extends Fragment implements CoffeeAdapter.GetOneCoffee {
 
     FirebaseFirestore firebaseFirestore;
     CoffeeAdapter adapter;
     RecyclerView recyclerView;
     CoffeeViewModel viewModel;
+    NavController navController;
 
     public AllCoffeeListFragment() {
         // Required empty public constructor
@@ -54,7 +57,8 @@ public class AllCoffeeListFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new CoffeeAdapter();
+        adapter = new CoffeeAdapter(this);
+        navController = Navigation.findNavController(view);
         viewModel = new ViewModelProvider(getActivity()).get(CoffeeViewModel.class);
         viewModel.getCoffeeList().observe(getViewLifecycleOwner(), new Observer<List<CoffeeModel>>(){
             @Override
@@ -67,4 +71,25 @@ public class AllCoffeeListFragment extends Fragment {
     }
 
 
+    @Override
+    public void clickedCoffee(int position, List<CoffeeModel> coffeeModels) {
+        String coffeeID = coffeeModels.get(position).getCoffeeId();
+        String description = coffeeModels.get(position).getDescription();
+        String coffeename = coffeeModels.get(position).getCoffeename();
+        int price = coffeeModels.get(position).getPrice();
+        String imageURL = coffeeModels.get(position).getImageURL();
+
+        AllCoffeeListFragmentDirections.ActionAllCoffeeListFragmentToCoffeeDetailFragment
+                action = AllCoffeeListFragmentDirections.actionAllCoffeeListFragmentToCoffeeDetailFragment();
+
+        action.setCoffeename(coffeename);
+        action.setDescription(description);
+        action.setImageurl(imageURL);
+        action.setPrice(price);
+        action.setId(coffeeID);
+
+        navController.navigate(action);
+
+
+    }
 }
