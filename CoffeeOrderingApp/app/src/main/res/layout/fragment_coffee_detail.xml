@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
-    tools:context=".CoffeeDetailFragment">
+    tools:context=".CoffeeDetailFragment"
+    android:background="#FFFFFF">
 
    <androidx.cardview.widget.CardView
        android:layout_width="match_parent"
@@ -57,6 +58,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:text="-"
+                    android:backgroundTint="#5C4545"
                     android:id="@+id/decrementcoffee"/>
 
                <TextView
@@ -73,6 +75,7 @@
                    android:layout_width="60dp"
                    android:layout_height="60dp"
                    android:text="+"
+                   android:backgroundTint="#5C4545"
                    android:id="@+id/incrementcoffee"/>
 
 
@@ -100,6 +103,7 @@
                android:layout_below="@id/linear"
                android:layout_centerHorizontal="true"
                android:layout_marginTop="30dp"
+               android:backgroundTint="#5C4545"
                android:layout_marginBottom="20dp"/>
 
 

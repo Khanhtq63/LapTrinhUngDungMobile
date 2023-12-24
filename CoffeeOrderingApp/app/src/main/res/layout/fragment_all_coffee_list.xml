@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AllCoffeeListFragment">
+    tools:context=".AllCoffeeListFragment"
+    android:background="#FFFFFF">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
+        android:backgroundTint="#775A5A"
         android:src="@drawable/cart" />
 
     <TextView
@@ -30,8 +32,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"
-        android:id="@+id/quantitynumber"
-        android:text="1"
+        android:id="@+id/quantityOnFAB"
+        android:text=""
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="20sp"/>
 
 

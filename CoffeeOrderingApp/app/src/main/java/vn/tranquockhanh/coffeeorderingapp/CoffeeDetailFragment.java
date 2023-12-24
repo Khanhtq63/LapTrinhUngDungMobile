@@ -61,6 +61,7 @@ public class CoffeeDetailFragment extends Fragment {
     @Override
     public void onViewCreated( View view,  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         imageView = view.findViewById(R.id.CoffeeDetailImage);
         coffeename = view.findViewById(R.id.coffeenamedetail);
         description = view.findViewById(R.id.coffeedetaildetail);
@@ -93,6 +94,15 @@ public class CoffeeDetailFragment extends Fragment {
                 totalPrice = quantity *price;
                 orderINFO.setText(String.valueOf("Tổng cộng là"+totalPrice));
 
+                if(quantity==0){
+                    firebaseFirestore.collection("Cart").document(name).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(Task<Void> task) {
+
+                        }
+                    });
+                }
+
             }
         });
 
@@ -120,6 +130,8 @@ public class CoffeeDetailFragment extends Fragment {
                         }
                     });
 
+                    
+
                 }
 
 
@@ -134,6 +146,12 @@ public class CoffeeDetailFragment extends Fragment {
                 if(quantity ==0){
                     Toast.makeText(getContext(),"Không có gì trong giỏ hàng",Toast.LENGTH_SHORT).show();
                     quantityview.setText(String.valueOf(quantity));
+                    quantity = 0;
+                    totalPrice =0;
+
+
+
+
 
                 } else{
                     quantity--; //quantity = quantity-1;
@@ -151,6 +169,7 @@ public class CoffeeDetailFragment extends Fragment {
 
                         }
                     });
+
                 }
 
 
@@ -161,7 +180,22 @@ public class CoffeeDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                AddToCart();
+
+                if(quantity==0) {
+
+                    navController.navigate(R.id.action_coffeeDetailFragment_to_allCoffeeListFragment);
+                    Toast.makeText(getContext(),"Bạn chưa đặt hàng" + name,Toast.LENGTH_SHORT).show();
+
+                } else {
+                    AddToCart();
+
+                    CoffeeDetailFragmentDirections.ActionCoffeeDetailFragmentToAllCoffeeListFragment
+                                action = CoffeeDetailFragmentDirections.actionCoffeeDetailFragmentToAllCoffeeListFragment();
+
+                        action.setQuantity(quantity);
+                        navController.navigate(action);
+                        Toast.makeText(getContext(),"Bạn đã đặt hàng" + name,Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -172,13 +206,9 @@ public class CoffeeDetailFragment extends Fragment {
 
     private void AddToCart() {
 
-        if(quantity == 0){
-            navController.navigate(R.id.action_coffeeDetailFragment_to_allCoffeeListFragment);
-            Toast.makeText(getContext(),"Bạn chưa đặt hàng " + name,Toast.LENGTH_SHORT).show();
-        } else {
 
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("coffeename", coffeename.getText().toString()); // Fix here
+            hashMap.put("coffeename", coffeename.getText().toString()); //Chuyển dữ liệu sang String để nhận dữ liệu từ firebase
             hashMap.put("quantity",quantity);
             hashMap.put("totalprice",totalPrice);
             hashMap.put("coffeeid",coffeeid);
@@ -188,19 +218,12 @@ public class CoffeeDetailFragment extends Fragment {
                 @Override
                 public void onComplete(Task<Void> task) {
 
-                    if(task.isSuccessful()){
-                        Toast.makeText(getContext(),"Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
-                        CoffeeDetailFragmentDirections.ActionCoffeeDetailFragmentToAllCoffeeListFragment
-                                action = CoffeeDetailFragmentDirections.actionCoffeeDetailFragmentToAllCoffeeListFragment();
 
-                        action.setQuantity(quantity);
-                        navController.navigate(action);
 
-                    }
 
                 }
             });
 
         }
-    }
 }
+

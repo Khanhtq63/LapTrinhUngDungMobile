@@ -64,4 +64,10 @@
             android:id="@+id/action_cartFragment_to_allCoffeeListFragment2"
             app:destination="@id/allCoffeeListFragment" />
     </fragment>
+    <activity
+        android:id="@+id/login2"
+        android:name="vn.tranquockhanh.coffeeorderingapp.Login_Register.Login"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+
 </navigation>

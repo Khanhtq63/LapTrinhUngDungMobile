@@ -16,9 +16,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,6 +31,7 @@ import java.util.List;
 
 import vn.tranquockhanh.coffeeorderingapp.Adapter.CoffeeAdapter;
 import vn.tranquockhanh.coffeeorderingapp.MVVM.CoffeeViewModel;
+import vn.tranquockhanh.coffeeorderingapp.Model.CartModel;
 import vn.tranquockhanh.coffeeorderingapp.Model.CoffeeModel;
 
 
@@ -38,6 +42,15 @@ public class AllCoffeeListFragment extends Fragment implements CoffeeAdapter.Get
     RecyclerView recyclerView;
     CoffeeViewModel viewModel;
     NavController navController;
+    int quantity = 0;
+
+    FloatingActionButton fab;
+
+    TextView quantityOnFAB;
+    List<Integer> savequantity = new ArrayList<>();
+    int quantitysum = 0;
+
+
 
     public AllCoffeeListFragment() {
         // Required empty public constructor
@@ -55,10 +68,13 @@ public class AllCoffeeListFragment extends Fragment implements CoffeeAdapter.Get
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerView = view.findViewById(R.id.recViewAll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CoffeeAdapter(this);
         navController = Navigation.findNavController(view);
+        quantityOnFAB =view.findViewById(R.id.quantityOnFAB);
+        fab = view.findViewById(R.id.fab);
         viewModel = new ViewModelProvider(getActivity()).get(CoffeeViewModel.class);
         viewModel.getCoffeeList().observe(getViewLifecycleOwner(), new Observer<List<CoffeeModel>>(){
             @Override
@@ -67,6 +83,45 @@ public class AllCoffeeListFragment extends Fragment implements CoffeeAdapter.Get
                     recyclerView.setAdapter(adapter);
             }
         });
+
+        quantity = AllCoffeeListFragmentArgs.fromBundle(getArguments()).getQuantity();
+
+        firebaseFirestore.collection("Cart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(Task<QuerySnapshot> task) {
+
+                if(task.isSuccessful()){
+                    for(DocumentSnapshot ds: task.getResult().getDocuments()){
+
+                        CartModel cartModel = ds.toObject(CartModel.class);
+                        int initialquantiy = cartModel.getQuantity();
+
+                        savequantity.add(initialquantiy);
+
+
+                    }
+
+                    for(int i = 0;i<savequantity.size();i++){
+                        quantitysum+= Integer.parseInt(String.valueOf(savequantity.get(i)));
+                    }
+
+                    quantityOnFAB.setText(String.valueOf(quantitysum));
+                    quantitysum=0;
+                    savequantity.clear();
+                }
+
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_allCoffeeListFragment_to_cartFragment);
+            }
+        });
+
+
+
 
     }
 
@@ -92,4 +147,5 @@ public class AllCoffeeListFragment extends Fragment implements CoffeeAdapter.Get
 
 
     }
+
 }
