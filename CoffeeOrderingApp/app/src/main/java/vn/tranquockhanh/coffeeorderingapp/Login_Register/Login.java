@@ -28,7 +28,6 @@ public class Login extends AppCompatActivity {
     private EditText emailTextView, passwordTextView;
     private Button Btn;
     private ProgressBar progressbar;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -91,7 +90,6 @@ public class Login extends AppCompatActivity {
                                     if (Login.this.getParent() instanceof MainActivity) {
                                         MainActivity mainActivity = (MainActivity) Login.this.getParent();
                                         mainActivity.loadFragment(new AllCoffeeListFragment());
-
                                         finish();
                                     } else {
                                         // Nếu getParent() không phải là MainActivity, thì chuyển qua MainActivity
@@ -113,6 +111,5 @@ public class Login extends AppCompatActivity {
         Intent PageReg = new Intent(this, Register.class);
         startActivity(PageReg);
     }
-
 
 }

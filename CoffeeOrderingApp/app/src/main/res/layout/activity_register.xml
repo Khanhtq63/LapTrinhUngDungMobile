@@ -14,8 +14,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/coffeelogo" />
+        android:layout_height="381dp"
+        app:srcCompat="@mipmap/coffeelogo1" />
 
 
     <TextView

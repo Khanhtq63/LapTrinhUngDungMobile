@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/allCoffeeListFragment">
+    app:startDestination="@id/login2">
 
     <fragment
         android:id="@+id/allCoffeeListFragment"
@@ -67,11 +67,7 @@
     <activity
         android:id="@+id/login2"
         android:name="vn.tranquockhanh.coffeeorderingapp.Login_Register.Login"
-        android:label="activity_register"
-        tools:layout="@layout/activity_register" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="vn.tranquockhanh.coffeeorderingapp.Login_Register.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 
 </navigation>
