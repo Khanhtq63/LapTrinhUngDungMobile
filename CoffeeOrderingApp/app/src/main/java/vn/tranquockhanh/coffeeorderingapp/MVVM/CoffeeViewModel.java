@@ -1,4 +1,4 @@
-// Import các thư viện và packages cần thiết
+
 package vn.tranquockhanh.coffeeorderingapp.MVVM;
 
 import androidx.lifecycle.LiveData;

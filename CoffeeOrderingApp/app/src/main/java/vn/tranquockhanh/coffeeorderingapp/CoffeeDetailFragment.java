@@ -80,7 +80,7 @@ public class CoffeeDetailFragment extends Fragment {
         price = CoffeeDetailFragmentArgs.fromBundle(getArguments()).getPrice();
 
         Glide.with(view.getContext()).load(imageURL).into(imageView);
-        coffeename.setText(name+" đ "+String.valueOf(price));
+        coffeename.setText(name+String.valueOf(price)+" đ ");
         description.setText(coffeedescription);
 
         firebaseFirestore.collection("Coffee").document(coffeeid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -92,7 +92,7 @@ public class CoffeeDetailFragment extends Fragment {
                 quantityview.setText(String.valueOf(quantity));
                 //Hiển thị giá tiền
                 totalPrice = quantity *price;
-                orderINFO.setText(String.valueOf("Tổng cộng là"+totalPrice));
+                orderINFO.setText(String.valueOf("Tổng cộng là "+totalPrice)+" đ");
 
                 if(quantity==0){
                     firebaseFirestore.collection("Cart").document(name).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -121,7 +121,7 @@ public class CoffeeDetailFragment extends Fragment {
                     quantityview.setText(String.valueOf(quantity));
                     //Hiển thị giá tiền
                     totalPrice = quantity *price;
-                    orderINFO.setText(String.valueOf("Tổng cộng là"+totalPrice));
+                    orderINFO.setText(String.valueOf("Tổng cộng là "+totalPrice)+" đ");
 
                     firebaseFirestore.collection("Coffee").document(coffeeid).update("quantity",quantity).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -158,7 +158,7 @@ public class CoffeeDetailFragment extends Fragment {
                     quantityview.setText(String.valueOf(quantity));
                     //Hiển thị giá tiền
                     totalPrice = quantity *price;
-                    orderINFO.setText(String.valueOf("Tổng cộng là"+totalPrice));
+                    orderINFO.setText(String.valueOf("Tổng cộng là "+totalPrice)+" đ");
 
                     //cập nhật số lượng
                     firebaseFirestore.collection("Coffee").document(coffeeid).update("quantity",quantity).addOnCompleteListener(new OnCompleteListener<Void>() {

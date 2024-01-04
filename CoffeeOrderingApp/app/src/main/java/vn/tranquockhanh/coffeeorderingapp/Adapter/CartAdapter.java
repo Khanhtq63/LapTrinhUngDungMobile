@@ -34,8 +34,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
         Glide.with(holder.itemView.getContext()).load(cartModellist.get(position).getImageURL()).into(holder.imageOfCoffee);
 
-        holder.price.setText("Ordered " + String.valueOf(cartModellist.get(position).getQuantity())
-                + " for $" + String.valueOf(cartModellist.get(position).getTotalprice()));
+        holder.price.setText("Đã đặt " + String.valueOf(cartModellist.get(position).getQuantity())
+                + " tổng cộng là " + String.valueOf(cartModellist.get(position).getTotalprice()+" đ"));
 
         holder.name.setText(cartModellist.get(position).getCoffeename());
 

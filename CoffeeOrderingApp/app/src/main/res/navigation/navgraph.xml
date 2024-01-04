@@ -69,5 +69,9 @@
         android:name="vn.tranquockhanh.coffeeorderingapp.Login_Register.Login"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="vn.tranquockhanh.coffeeorderingapp.Login_Register.LoginFragment"
+        android:label="LoginFragment" />
 
 </navigation>

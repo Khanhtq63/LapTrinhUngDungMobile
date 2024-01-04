@@ -103,7 +103,7 @@ public class CartFragment extends Fragment {
                     for(int i=0;i<saveTotalCost.size();i++){
                         totalOrderCost +=Integer.parseInt(String.valueOf(saveTotalCost.get(i)));
                     }
-                    orderSummary.setText("Tổng cộng là "+String.valueOf(totalOrderCost));
+                    orderSummary.setText("Tổng cộng là "+String.valueOf(totalOrderCost)+" đ");
                     totalOrderCost =0;
                     saveTotalCost.clear();
                 }
@@ -150,7 +150,7 @@ public class CartFragment extends Fragment {
                 });
 
                 navController.navigate(R.id.action_cartFragment_to_allCoffeeListFragment2);
-                Toast.makeText(getContext(),"Order Received",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Đặt hàng thành công",Toast.LENGTH_SHORT).show();
 
 
             }

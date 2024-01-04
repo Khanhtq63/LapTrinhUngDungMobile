@@ -1,6 +1,8 @@
 package vn.tranquockhanh.coffeeorderingapp.Login_Register;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,16 +35,13 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // taking instance of FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
-
-        // initialising all views through id defined above
         emailTextView = findViewById(R.id.email);
         passwordTextView = findViewById(R.id.password);
         Btn = findViewById(R.id.login);
         progressbar = findViewById(R.id.progressBar);
 
-        // Set on Click Listener on Sign-in button
+
         Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -54,32 +53,24 @@ public class Login extends AppCompatActivity {
     private void loginUserAccount()
     {
 
-        // show the visibility of progress bar to show loading
-        progressbar.setVisibility(View.VISIBLE);
 
-        // Take the value of two edit texts in Strings
+        progressbar.setVisibility(View.VISIBLE);
         String email, password;
         email = emailTextView.getText().toString();
         password = passwordTextView.getText().toString();
 
-        // validations for input email and password
+
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(),
-                            "Please enter email!!",
-                            Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(getApplicationContext(), "Hãy điền email của bạn", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(),
-                            "Please enter password!!",
-                            Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(getApplicationContext(), "Hãy điền mật khẩu của bạn", Toast.LENGTH_LONG).show();
             return;
         }
 
-        // signin existing user
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
                         new OnCompleteListener<AuthResult>() {
@@ -89,32 +80,29 @@ public class Login extends AppCompatActivity {
                             {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(),
-                                                    "Login successful!!",
+                                                    "Đăng nhập thành công",
                                                     Toast.LENGTH_LONG)
                                             .show();
-
-                                    // hide the progress bar
                                     progressbar.setVisibility(View.GONE);
+//                                    Intent intent = new Intent(Login.this, AllCoffeeListFragment.class);
+//                                    intent.putExtra("destination", R.id.allCoffeeListFragment);
+//                                    startActivity(intent);
+//                                    finish();
+                                    if (Login.this.getParent() instanceof MainActivity) {
+                                        MainActivity mainActivity = (MainActivity) Login.this.getParent();
+                                        mainActivity.loadFragment(new AllCoffeeListFragment());
 
-                                    // if sign-in is successful
-                                    // intent to home activity
-                                    Intent intent
-                                            = new Intent(Login.this,
-                                            MainActivity.class);
-                                    intent.putExtra("destination", R.id.allCoffeeListFragment);
-                                    startActivity(intent);
-                                    finish();
+                                        finish();
+                                    } else {
+                                        // Nếu getParent() không phải là MainActivity, thì chuyển qua MainActivity
+                                        Intent intent = new Intent(Login.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 }
 
                                 else {
-
-                                    // sign-in failed
-                                    Toast.makeText(getApplicationContext(),
-                                                    "Login failed!!",
-                                                    Toast.LENGTH_LONG)
-                                            .show();
-
-                                    // hide the progress bar
+                                    Toast.makeText(getApplicationContext(), "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
                                     progressbar.setVisibility(View.GONE);
                                 }
                             }
@@ -125,4 +113,6 @@ public class Login extends AppCompatActivity {
         Intent PageReg = new Intent(this, Register.class);
         startActivity(PageReg);
     }
+
+
 }

@@ -40,12 +40,17 @@
                android:id="@+id/coffeenamedetail"/>
 
            <TextView
+               android:id="@+id/coffeedetaildetail"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="coffee detail"
                android:layout_below="@+id/coffeenamedetail"
-               android:layout_margin="10dp"
-               android:id="@+id/coffeedetaildetail"/>
+               android:layout_marginStart="10dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="10dp"
+               android:layout_marginBottom="10dp"
+               android:textAlignment="center"
+               android:textSize="25dp"
+               android:text="coffee detail" />
            <LinearLayout
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
